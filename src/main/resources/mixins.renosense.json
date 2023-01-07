@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "package": "me.sjnez.renosense.mixin.mixins",
+  "refmap": "mixins.renosense.refmap.json",
+  "priority": 2147483646,
+  "mixinPriority": 2147483646,
+  "mixins": [
+    "IFontRenderer",
+    "MixinAbstractClientPlayer",
+    "MixinEntity",
+    "MixinEntityLivingBase",
+    "MixinEntityPlayerSP",
+    "MixinEntityRenderer",
+    "MixinFontRenderer",
+    "MixinGuiMainMenu",
+    "MixinGuiNewChat",
+    "MixinGuiScreen",
+    "MixinGuiToast",
+    "MixinItemRenderer",
+    "MixinLayerArmorBase",
+    "MixinMinecraft",
+    "MixinNetworkManager",
+    "MixinNetworkPlayerInfo",
+    "MixinPlayerControllerMP",
+    "MixinRenderLivingBase",
+    "MixinRenderPlayer",
+    "MixinWorld"
+  ]
+}

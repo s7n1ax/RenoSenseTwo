@@ -1,0 +1,27 @@
+package me.sjnez.renosense.mixin.mixins;
+
+import me.sjnez.renosense.features.modules.client.NickHider;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
+
+@Mixin(value={FontRenderer.class})
+public abstract class MixinFontRenderer {
+    @Shadow
+    protected abstract int func_180455_b(String var1, float var2, float var3, int var4, boolean var5);
+
+    @Shadow
+    protected abstract void func_78255_a(String var1, boolean var2);
+
+    @Redirect(method={"renderString(Ljava/lang/String;FFIZ)I"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/gui/FontRenderer;renderStringAtPos(Ljava/lang/String;Z)V"))
+    public void renderStringAtPosHook(FontRenderer renderer, String text, boolean shadow) {
+        if (NickHider.getInstance().isOn()) {
+            this.func_78255_a(text.replace(Minecraft.getMinecraft().getSession().getUsername(), NickHider.getInstance().NameString.getValueAsString()), shadow);
+        } else {
+            this.func_78255_a(text, shadow);
+        }
+    }
+}
